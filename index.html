@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Happy Birthday!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- floating background doodles (shared across scenes) -->
+<div class="bg-doodles" aria-hidden="true">
+  <span class="doodle cloud c1">☁️</span>
+  <span class="doodle cloud c2">☁️</span>
+  <span class="doodle star s1">✦</span>
+  <span class="doodle star s2">✧</span>
+  <span class="doodle star s3">✦</span>
+  <span class="doodle sparkle sp1">✨</span>
+  <span class="doodle sparkle sp2">✨</span>
+</div>
+
+<!-- music toggle -->
+<button id="musicToggle" class="music-btn" aria-label="Toggle music">🎵</button>
+<audio id="bgMusic" loop preload="none">
+  <source src="assets/music/birthday-music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- progress dots -->
+<div class="progress-dots" id="progressDots" aria-hidden="true"></div>
+
+<main id="app">
+
+  <!-- SCENE 1 — MYSTERIOUS INTRO -->
+  <section class="scene scene-1 active" data-scene="1">
+    <div class="scene-inner">
+      <div class="intro-character" id="introChar">🙂</div>
+      <div class="text-stack" id="introTextStack">
+        <p class="reveal-line" data-line="0">WAIT... <span class="eyes">👀</span></p>
+        <p class="reveal-line" data-line="1">Is today actually <em>YOUR</em> birthday?</p>
+        <p class="reveal-line" data-line="2">Because something feels suspicious...</p>
+        <p class="reveal-line reveal-final" data-line="3">Okay fine. We know it's your birthday. <span>😂</span></p>
+      </div>
+      <button class="btn btn-primary bounce-in hidden" id="toScene2">LET'S GO →</button>
+    </div>
+  </section>
+
+  <!-- SCENE 2 — MAIN BIRTHDAY REVEAL -->
+  <section class="scene scene-2" data-scene="2">
+    <div class="scene-inner">
+      <div class="cake-scene">
+        <div class="balloon b1">🎈</div>
+        <div class="balloon b2">🎈</div>
+        <div class="balloon b3">🎈</div>
+        <div class="balloon b4">🎈</div>
+        <div class="confetti-emoji ce1">🎊</div>
+        <div class="confetti-emoji ce2">⭐</div>
+        <div class="confetti-emoji ce3">✨</div>
+        <div class="cupcake cu1">🧁</div>
+        <div class="cupcake cu2">🧁</div>
+        <div class="gift-icon g1">🎁</div>
+        <div class="gift-icon g2">🎁</div>
+        <div class="cake-wrap">
+          <div class="cake" id="birthdayCake">🎂</div>
+        </div>
+      </div>
+      <h1 class="headline" id="birthdayHeadline"></h1>
+      <p class="sub-line">Congratulations!<br>You have successfully survived another year. <span>😂</span></p>
+      <p class="level-line">Level unlocked: <span id="ageDisplay">22</span> years</p>
+      <button class="btn btn-fun" id="noiseBtn">MAKE SOME NOISE 🎉</button>
+    </div>
+  </section>
+
+  <!-- SCENE 3 — FRIENDSHIP MESSAGE -->
+  <section class="scene scene-3" data-scene="3">
+    <div class="scene-inner">
+      <div class="picnic-scene">
+        <div class="picnic-cloud pc1">☁️</div>
+        <div class="picnic-cloud pc2">☁️</div>
+        <div class="picnic-blanket">
+          <span class="friend friend-a">🧑</span>
+          <span class="friend friend-b">🧑</span>
+          <span class="picnic-basket">🧺</span>
+        </div>
+      </div>
+
+      <div class="float-cards" id="floatCards">
+        <div class="fcard">More adventures ✨</div>
+        <div class="fcard">More random conversations 😂</div>
+        <div class="fcard">More achievements 🏆</div>
+        <div class="fcard">More unforgettable memories 📸</div>
+        <div class="fcard">More reasons to laugh</div>
+      </div>
+
+      <div class="message-block" id="s3MessageBlock">
+        <p class="warm-line">I hope this year brings you happiness, success, peace, good people and a lot of moments worth remembering.</p>
+        <p class="warm-line">Life gets busy and people come and go, but I'm genuinely glad you're one of the people I got to know.</p>
+        <p class="joke-line">Now enough emotional stuff...</p>
+        <p class="joke-line joke-line-2">...because we have an important matter to discuss.</p>
+      </div>
+
+      <button class="btn btn-primary hidden" id="toScene4">WHAT MATTER? 👀</button>
+    </div>
+  </section>
+
+  <!-- SCENE 4 — SHOPPING REVEAL -->
+  <section class="scene scene-4" data-scene="4">
+    <div class="scene-inner">
+      <div class="mall-scene">
+        <div class="mall-building">🏬</div>
+        <div class="walking-char" id="walkingChar">🚶</div>
+        <div class="shop-bag-float">🛍️</div>
+      </div>
+      <p class="setup-line">Remember when you said...</p>
+      <h2 class="quote-shout">"MUJHE SHOPPING KARWAO 🛍️"</h2>
+      <p class="setup-line delay-1">Well...</p>
+      <p class="setup-line delay-2">Today's your lucky day. <span>😂</span></p>
+      <button class="btn btn-fun" id="toScene5">LET'S GO SHOPPING 🛒</button>
+    </div>
+  </section>
+
+  <!-- SCENE 5 — INTERACTIVE SHOPPING -->
+  <section class="scene scene-5" data-scene="5">
+    <div class="scene-inner scene-5-inner">
+      <h2 class="section-title">BIRTHDAY SHOPPING SPREE 🛍️</h2>
+
+      <div class="budget-bar">
+        <div class="budget-item">
+          <span class="budget-label">Budget</span>
+          <span class="budget-value">Rs. <span id="budgetTotal">10,000</span></span>
+        </div>
+        <div class="budget-item">
+          <span class="budget-label">Remaining</span>
+          <span class="budget-value" id="budgetRemaining">Rs. 10,000</span>
+        </div>
+      </div>
+      <div class="budget-track">
+        <div class="budget-fill" id="budgetFill"></div>
+      </div>
+      <p class="wallet-msg" id="walletMsg"></p>
+
+      <div class="shop-grid" id="shopGrid"></div>
+
+      <div class="cart-panel" id="cartPanel">
+        <h3>YOUR SHOPPING CART 🛍️ <span id="cartCount">(0)</span></h3>
+        <div class="cart-items" id="cartItems">
+          <p class="cart-empty">Cart's empty... for now. 👀</p>
+        </div>
+        <div class="cart-summary">
+          <div class="cart-row"><span>Subtotal</span><span id="subtotalVal">Rs. 0</span></div>
+          <div class="cart-row discount-row hidden" id="discountRow"><span>Birthday Discount 🎉</span><span id="discountVal">- Rs. 0</span></div>
+          <div class="cart-row total-row"><span>Final Total</span><span id="finalTotalVal">Rs. 0</span></div>
+        </div>
+        <button class="btn btn-primary btn-small" id="unlockDiscountBtn" disabled>UNLOCK BIRTHDAY DISCOUNT 🎉</button>
+      </div>
+
+      <div class="discount-reveal hidden" id="discountReveal">
+        <p>Okay... okay...</p>
+        <p>Since it's your birthday...</p>
+        <h3>🎉 SPECIAL BIRTHDAY DISCOUNT 🎉</h3>
+        <div class="discount-numbers">
+          <div><span>Shopping Total:</span><span id="dTotal">Rs. 0</span></div>
+          <div><span>Birthday Discount:</span><span id="dDiscount">- Rs. 0</span></div>
+          <div class="you-pay"><span>YOU PAY:</span><span>Rs. 0 😂</span></div>
+        </div>
+        <p class="tnc">Terms & Conditions: Actual shopping still requires actual money. Nice try. 😭</p>
+        <button class="btn btn-primary" id="toScene6">CONTINUE →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 6 — THE ACTUAL GIFT -->
+  <section class="scene scene-6" data-scene="6">
+    <div class="scene-inner">
+      <p class="setup-line">Okay...</p>
+      <p class="setup-line delay-1">Shopping jokes aside...</p>
+      <p class="setup-line delay-2">I actually have something for you.</p>
+
+      <div class="gift-box-wrap">
+        <div class="gift-box" id="giftBox">
+          <div class="gift-lid">🎀</div>
+          <div class="gift-body">🎁</div>
+        </div>
+        <div class="gift-sparkles hidden" id="giftSparkles">
+          <span>✨</span><span>✨</span><span>⭐</span><span>✨</span><span>🎊</span>
+        </div>
+      </div>
+
+      <button class="btn btn-fun" id="openGiftBtn">OPEN THE GIFT 🎁</button>
+
+      <div class="gift-contents hidden" id="giftContents">
+        <div class="gift-word">HAPPINESS</div>
+        <div class="gift-word">SUCCESS</div>
+        <div class="gift-word">PEACE</div>
+        <div class="gift-word">GOOD HEALTH</div>
+        <div class="gift-word">GOOD MEMORIES</div>
+        <div class="gift-word">AND A LOT OF WINS THIS YEAR</div>
+        <p class="gift-final-line">Because honestly, you deserve a good year.</p>
+        <button class="btn btn-primary" id="toScene7">CONTINUE →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 7 — HEARTFELT FRIENDSHIP MESSAGE -->
+  <section class="scene scene-7" data-scene="7">
+    <div class="scene-inner">
+      <div class="sunset-scene">
+        <div class="sun">☀️</div>
+        <div class="fairy-lights">🎐</div>
+        <span class="friend sit-a">🧑</span>
+        <span class="friend sit-b">🧑</span>
+      </div>
+      <div class="heartfelt-lines" id="heartfeltLines">
+        <p>One last thing...</p>
+        <p>Thanks for being one of those friends who can make ordinary conversations funny, random moments memorable and boring days a little less boring.</p>
+        <p>I hope you get everything you're working for.</p>
+        <p class="tag-line">More success.</p>
+        <p class="tag-line">More happiness.</p>
+        <p class="tag-line">More adventures.</p>
+        <p class="tag-line">More good memories.</p>
+        <p>And obviously...</p>
+        <p class="tag-line big">MORE SHOPPING. 😂🛍️</p>
+        <h2 class="final-shout">HAPPY BIRTHDAY, BRO! 🎂</h2>
+      </div>
+      <button class="btn btn-primary hidden" id="toScene8">KEEP GOING →</button>
+    </div>
+  </section>
+
+  <!-- SCENE 8 — FINAL TROLL / SURPRISE -->
+  <section class="scene scene-8" data-scene="8">
+    <div class="scene-inner">
+      <div class="troll-stage" id="trollStage1">
+        <p class="troll-line">Okay...</p>
+        <p class="troll-line">That's it.</p>
+        <p class="troll-line troll-wait">...wait.</p>
+      </div>
+      <div class="troll-stage hidden" id="trollStage2">
+        <h2 class="troll-shout">YOU STILL OWE ME A SHOPPING TRIP. <span>😭🛍️</span></h2>
+        <div class="running-char">🏃</div>
+        <div class="running-bags">🛍️</div>
+        <p class="final-line">Happy Birthday once again! 🎉</p>
+        <p class="final-line small">Made with friendship, chaos, and absolutely no romantic intentions. <span>😂</span></p>
+        <h1 class="the-end">🎂 HAPPY BIRTHDAY 🎂</h1>
+        <button class="btn btn-primary btn-small" id="replayBtn">WATCH AGAIN ↺</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- confetti canvas layer -->
+<canvas id="confettiCanvas"></canvas>
+
+<script src="script.js"></script>
+</body>
+</html>
